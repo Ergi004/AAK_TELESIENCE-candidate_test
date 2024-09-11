@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { BarChart } from "@mui/x-charts/BarChart";
 import { API } from "../services/api";
 
@@ -63,16 +63,12 @@ export const BarChartComponent = () => {
     }
   };
 
+  useEffect(() => {
+    getData();
+  }, []);
+
   return (
     <div className="shadow-xl rounded-md flex flex-col bg-white max-lg:overflow-x-scroll">
-      <button
-        onClick={() => {
-          getData();
-        }}
-        className="px-5 py-2 shadow-xl rounded-md ml-auto mr-7 hover:bg-blue-700 mt-4 bg-blue-500 text-white transition-all duration-150"
-      >
-        Display Data
-      </button>
       <BarChart
         xAxis={[{ scaleType: "band", data: categories }]}
         series={seriesData}
